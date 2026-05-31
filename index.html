@@ -1590,9 +1590,18 @@
         }
 
         // ==================== ADMIN PANEL ====================
-        function openAdmin() {
-            document.getElementById('adminModal').classList.add('open');
-            renderAdminTable();
+          function openAdmin() {
+    const password = prompt('🔐 Enter admin password:');
+    // 🔒 CHANGE THIS PASSWORD TO YOUR OWN SECURE ONE
+    const ADMIN_PASSWORD = 'sebfour2024';
+
+    if (password === ADMIN_PASSWORD) {
+        document.getElementById('adminModal').classList.add('open');
+        renderAdminTable();
+    } else if (password !== null) {
+        showToast('❌ Access denied. Wrong password.');
+    }
+}
         }
 
         function closeAdmin() {
