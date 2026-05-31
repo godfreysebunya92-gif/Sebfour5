@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebfour Co. - Premium Men's Fashion</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #c9a96e;
+            --bg: #fafaf8;
+            --card-bg: #fff;
+            --text: #2c2c2c;
+            --text-light: #6b6b6b;
+            --border: #e8e5df;
+            --shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --radius: 10px;
+            --tag-new: #2e7d32;
+            --tag-sale: #c62828;
+            --tag-hot: #e65100;
+            --discount-bg: #fff3e0;
+            --whatsapp: #25D366;
+            --transition: 0.25s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        /* Header */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .search-bar {
+            flex: 1;
+            max-width: 420px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+            background: #f9f9f7;
+        }
+        .search-bar input:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+        .search-bar .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            font-size: 1rem;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cart-btn {
+            position: relative;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cart-btn:hover {
+            background: #2a2a42;
+            transform: translateY(-1px);
+        }
+        .cart-count {
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        /* Category Nav */
+        .cat-nav {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .cat-nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4px;
+            padding: 8px 0;
+        }
+        .cat-btn {
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            color: var(--text);
+        }
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        /* Main Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        /* Filters Sidebar */
+        .filters-sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 130px;
+            align-self: flex-start;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        .filters-sidebar h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin: 14px 0 8px;
+        }
+        .filters-sidebar h4:first-child {
+            margin-top: 0;
+        }
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .filter-option:hover {
+            color: var(--accent);
+        }
+        .filter-option input {
+            accent-color: var(--accent);
+        }
+        .color-swatch-filter {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            margin: 2px 3px;
+            transition: var(--transition);
+        }
+        .color-swatch-filter:hover,
+        .color-swatch-filter.selected {
+            border-color: #333;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+        }
+        /* Product Grid */
+        .products-area {
+            flex: 1;
+            min-width: 0;
+        }
+        .products-area h2 {
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 18px;
+        }
+        /* Product Card */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .product-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 5;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .tag-new {
+            background: var(--tag-new);
+            color: #fff;
+        }
+        .tag-sale {
+            background: var(--tag-sale);
+            color: #fff;
+        }
+        .tag-hot {
+            background: var(--tag-hot);
+            color: #fff;
+        }
+        .tag-bestseller {
+            background: #1a237e;
+            color: #fff;
+        }
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #f5f5f0;
+            cursor: pointer;
+        }
+        .carousel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0eb;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 3;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .carousel-dot.active {
+            background: #fff;
+            border-color: #333;
+            width: 22px;
+            border-radius: 10px;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 4;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-container:hover .carousel-arrow {
+            opacity: 1;
+        }
+        .carousel-arrow.prev {
+            left: 8px;
+        }
+        .carousel-arrow.next {
+            right: 8px;
+        }
+        .carousel-arrow:hover {
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Color Swatches */
+        .product-info {
+            padding: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        .product-desc {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .color-swatch {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            transition: var(--transition);
+            position: relative;
+        }
+        .color-swatch:hover,
+        .color-swatch.selected {
+            border-color: #333;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+        }
+        .color-swatch.selected::after {
+            content: '✓';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+        .size-selector {
+            margin-bottom: 8px;
+        }
+        .size-selector select {
+            width: 100%;
+            padding: 7px 10px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            background: #fafaf8;
+            cursor: pointer;
+        }
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .qty-row input {
+            width: 50px;
+            padding: 6px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .price-section {
+            margin-bottom: 10px;
+        }
+        .price-original {
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .price-current {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .price-discount-note {
+            font-size: 0.72rem;
+            color: #c62828;
+            font-weight: 600;
+            background: #ffebee;
+            padding: 3px 8px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+        .add-to-cart-btn:hover {
+            background: #2a2a42;
+            letter-spacing: 0.3px;
+        }
+        .whatsapp-btn-sm {
+            width: 100%;
+            padding: 8px;
+            background: var(--whatsapp);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .whatsapp-btn-sm:hover {
+            background: #1ebe57;
+            letter-spacing: 0.3px;
+        }
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            display: none;
+        }
+        .cart-overlay.open {
+            display: block;
+        }
+        .cart-sidebar {
+            position: fixed;
+            right: -440px;
+            top: 0;
+            bottom: 0;
+            width: 420px;
+            max-width: 95vw;
+            background: #fff;
+            z-index: 201;
+            transition: right 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+        }
+        .cart-sidebar.open {
+            right: 0;
+        }
+        .cart-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h3 {
+            font-size: 1.1rem;
+        }
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0eb;
+        }
+        .cart-item-img {
+            width: 70px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #f5f5f0;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .cart-item-meta {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+        .cart-item-price {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .cart-item-discount {
+            font-size: 0.7rem;
+            color: #c62828;
+            font-weight: 600;
+        }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #c62828;
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 4px 0;
+        }
+        .cart-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .cart-savings {
+            font-size: 0.8rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .checkout-whatsapp {
+            width: 100%;
+            padding: 14px;
+            background: var(--whatsapp);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .checkout-whatsapp:hover {
+            background: #1ebe57;
+        }
+        /* Admin Panel */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 150;
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .admin-toggle:hover {
+            opacity: 1;
+        }
+        .admin-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-modal.open {
+            display: flex;
+        }
+        .admin-panel {
+            background: #fff;
+            border-radius: 12px;
+            width: 95vw;
+            max-width: 1100px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            position: relative;
+        }
+        .admin-panel h2 {
+            margin-bottom: 16px;
+        }
+        .admin-panel table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .admin-panel th,
+        .admin-panel td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .admin-panel th {
+            background: #f5f5f0;
+            font-weight: 600;
+        }
+        .admin-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin: 2px;
+            transition: var(--transition);
+        }
+        .admin-btn.edit {
+            background: #2196F3;
+            color: #fff;
+        }
+        .admin-btn.delete {
+            background: #c62828;
+            color: #fff;
+        }
+        .admin-btn.save {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .admin-btn.add {
+            background: var(--accent);
+            color: #fff;
+        }
+        .admin-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            border: 1.5px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+        .admin-image-thumbs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .admin-image-thumb {
+            width: 50px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+        }
+        .admin-image-thumb:hover {
+            border-color: #c62828;
+        }
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 400;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: fadeInUp 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .filters-sidebar {
+                display: none;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 10px;
+            }
+            .cart-sidebar {
+                width: 100vw;
+                right: -100vw;
+            }
+            .header-inner {
+                gap: 8px;
+            }
+            .search-bar {
+                max-width: 200px;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+        @media (max-width: 500px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .product-info {
+                padding: 8px;
+            }
+            .product-name {
+                font-size: 0.8rem;
+            }
+            .carousel-arrow {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+        }
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            grid-column: 1/-1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a class="logo" onclick="resetFilters()">Seb<span>four</span> Co.</a>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search products..." oninput="renderProducts()">
+            </div>
+            <div class="header-actions">
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Cart <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Navigation -->
+    <nav class="cat-nav" id="catNav">
+        <div class="cat-nav-inner">
+            <button class="cat-btn active" data-cat="all" onclick="setCategory('all',this)">All</button>
+            <button class="cat-btn" data-cat="Khaki Trousers" onclick="setCategory('Khaki Trousers',this)">Khaki Trousers</button>
+            <button class="cat-btn" data-cat="Jeans" onclick="setCategory('Jeans',this)">Jeans</button>
+            <button class="cat-btn" data-cat="Sweaterpants" onclick="setCategory('Sweaterpants',this)">Sweaterpants</button>
+            <button class="cat-btn" data-cat="Shorts" onclick="setCategory('Shorts',this)">Shorts</button>
+            <button class="cat-btn" data-cat="Cargopants" onclick="setCategory('Cargopants',this)">Cargopants</button>
+            <button class="cat-btn" data-cat="Beltless Trousers" onclick="setCategory('Beltless Trousers',this)">Beltless Trousers</button>
+            <button class="cat-btn" data-cat="Polo T-shirts" onclick="setCategory('Polo T-shirts',this)">Polo T-shirts</button>
+            <button class="cat-btn" data-cat="Long-sleeved T-shirts" onclick="setCategory('Long-sleeved T-shirts',this)">Long-sleeved T-shirts</button>
+            <button class="cat-btn" data-cat="Short-sleeved T-shirts" onclick="setCategory('Short-sleeved T-shirts',this)">Short-sleeved T-shirts</button>
+            <button class="cat-btn" data-cat="Long-sleeved Shirts" onclick="setCategory('Long-sleeved Shirts',this)">Long-sleeved Shirts</button>
+            <button class="cat-btn" data-cat="Short-sleeved Shirts" onclick="setCategory('Short-sleeved Shirts',this)">Short-sleeved Shirts</button>
+            <button class="cat-btn" data-cat="Jackets" onclick="setCategory('Jackets',this)">Jackets</button>
+            <button class="cat-btn" data-cat="Boxers" onclick="setCategory('Boxers',this)">Boxers</button>
+            <button class="cat-btn" data-cat="Underwear" onclick="setCategory('Underwear',this)">Underwear</button>
+            <button class="cat-btn" data-cat="Rubber T-shirts" onclick="setCategory('Rubber T-shirts',this)">Rubber T-shirts</button>
+            <button class="cat-btn" data-cat="Open Shoes" onclick="setCategory('Open Shoes',this)">Open Shoes</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filtersSidebar">
+            <h4>📁 Category</h4>
+            <div id="sidebarCategories"></div>
+            <h4>🎨 Color</h4>
+            <div id="sidebarColors"></div>
+            <h4>📏 Size</h4>
+            <div id="sidebarSizes"></div>
+            <button onclick="clearFilters()" style="width:100%;padding:8px;margin-top:10px;border-radius:50px;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-weight:600;">Clear Filters</button>
+        </aside>
+
+        <!-- Products Area -->
+        <div class="products-area" id="productsArea">
+            <h2 id="productsHeading">All Products</h2>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-total" id="cartTotal">Total: UGX 0</div>
+            <div class="cart-savings" id="cartSavings"></div>
+            <button class="checkout-whatsapp" onclick="checkoutWhatsApp()">
+                💬 Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Toggle -->
+    <button class="admin-toggle" onclick="openAdmin()">⚙️ Admin</button>
+
+    <!-- Admin Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-panel" id="adminPanel">
+            <button class="admin-close" onclick="closeAdmin()">✕</button>
+            <h2>🔧 Admin Panel - Sebfour Co.</h2>
+            <p style="font-size:0.8rem;color:#888;margin-bottom:12px;">Manage products, images, prices. Changes save automatically.</p>
+            <button class="admin-btn add" onclick="showAddProductForm()">+ Add New Product</button>
+            <div id="adminProductForm" style="display:none;margin:12px 0;padding:12px;background:#f9f9f7;border-radius:8px;"></div>
+            <div style="overflow-x:auto;margin-top:12px;">
+                <table id="adminTable">
+                    <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Colors</th><th>Tag</th><th>Actions</th></tr></thead>
+                    <tbody id="adminTableBody"></tbody>
+                </table>
+            </div>
+            <div id="adminImageManager" style="margin-top:16px;padding:12px;background:#fafaf8;border-radius:8px;display:none;"></div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        // ==================== PRODUCT DATA ====================
+        const TROUSER_SIZES = ['30', '31', '32', '33', '34', '36', '38', '40'];
+        const TOP_SIZES = ['S', 'M', 'L', 'XL', 'XXL', '3XL'];
+        const SHOE_SIZES = ['40', '41', '42', '43', '44', '45'];
+        const TROUSER_COLORS = ['Black', 'White', 'Navy Blue', 'Maroon', 'Army Green', 'Dark Grey', 'Khaki',
+        'Brown', 'Burgundy'];
+        const TOP_COLORS = ['White', 'Black', 'Maroon', 'Cream', 'Red', 'Green', 'Brown'];
+        const SHOE_COLORS = ['Black', 'White', 'Brown'];
+
+        // Generate placeholder image URLs (using picsum with seeds for variety)
+        function getPlaceholderImages(seed, count = 5) {
+            const imgs = [];
+            for (let i = 0; i < count; i++) {
+                imgs.push(`https://picsum.photos/seed/${seed}${i}/400/500`);
+            }
+            return imgs;
+        }
+
+        // Color hex mapping for swatches
+        const colorHexMap = {
+            'Black': '#1a1a1a',
+            'White': '#f5f5f0',
+            'Navy Blue': '#1a2a40',
+            'Maroon': '#5c1a1a',
+            'Army Green': '#3d4a2e',
+            'Dark Grey': '#4a4a4a',
+            'Khaki': '#b8a88a',
+            'Brown': '#5c3a1e',
+            'Burgundy': '#4a1020',
+            'Cream': '#f5eedc',
+            'Red': '#b82020',
+            'Green': '#2e5c2e',
+        };
+
+        function getColorHex(colorName) {
+            return colorHexMap[colorName] || '#888';
+        }
+
+        // Build master product list
+        function generateAllProducts() {
+            const products = [];
+            let id = 1;
+
+            // Helper to create product
+            function addProduct(name, category, price, sizes, colors, tag, desc, extraImagesSeed = null) {
+                const colorImages = {};
+                const baseSeed = extraImagesSeed || id;
+                colors.forEach((color, ci) => {
+                    colorImages[color] = getPlaceholderImages(baseSeed * 100 + ci, 5);
+                });
+                products.push({
+                    id,
+                    name,
+                    category,
+                    price,
+                    sizes,
+                    colors,
+                    colorImages,
+                    tag: tag || '',
+                    description: desc || `Premium quality ${name.toLowerCase()} from Sebfour Co. Crafted for comfort and style.`,
+                    currentColor: colors[0],
+                    currentSlide: 0,
+                });
+                id++;
+            }
+
+            // --- Khaki Trousers (8 products with different color combos) ---
+            const khakiVariants = [
+                { name: 'Classic Khaki Trouser', colors: ['Khaki', 'Brown', 'Dark Grey'], tag: 'BESTSELLER',
+                    desc: 'Timeless classic khaki trousers. Perfect for casual and semi-formal occasions.' },
+                { name: 'Slim Fit Khaki Trouser', colors: ['Khaki', 'Navy Blue', 'Black'], tag: 'NEW',
+                    desc: 'Modern slim-fit khaki trousers with a tapered leg for a sharp silhouette.' },
+                { name: 'Relaxed Khaki Trouser', colors: ['Khaki', 'Army Green', 'Brown'], tag: '',
+                    desc: 'Comfortable relaxed-fit khaki trousers ideal for everyday wear.' },
+                { name: 'Premium Khaki Dress Pant', colors: ['Black', 'Navy Blue', 'Dark Grey'], tag: 'HOT',
+                    desc: 'Elevate your look with these premium dress khaki pants.' },
+                { name: 'Stretch Khaki Trouser', colors: ['Khaki', 'Black', 'Navy Blue'], tag: 'NEW',
+                    desc: 'Stretch-infused khaki trousers for all-day comfort and movement.' },
+                { name: 'Vintage Wash Khaki', colors: ['Brown', 'Khaki', 'Army Green'], tag: '',
+                    desc: 'Vintage-washed khaki trousers with a lived-in feel.' },
+                { name: 'Tailored Khaki Trouser', colors: ['Navy Blue', 'Black', 'Dark Grey'], tag: 'BESTSELLER',
+                    desc: 'Sharp tailored khaki trousers for the modern gentleman.' },
+                { name: 'Casual Khaki Chino', colors: ['Khaki', 'White', 'Brown'], tag: '',
+                desc: 'Easy-going chino-style khaki trousers for weekend vibes.' },
+            ];
+            khakiVariants.forEach(v => addProduct(v.name, 'Khaki Trousers', 85000, TROUSER_SIZES, v.colors, v.tag,
+                v.desc));
+
+            // --- Jeans (8 products) ---
+            const jeansVariants = [
+                { name: 'Slim Fit Jeans', colors: ['Black', 'Navy Blue', 'Dark Grey'], tag: 'BESTSELLER',
+                    desc: 'Classic slim-fit jeans with a modern edge.' },
+                { name: 'Straight Cut Jeans', colors: ['Navy Blue', 'Black', 'Dark Grey'], tag: '',
+                    desc: 'Straight-cut jeans for a timeless, versatile look.' },
+                { name: 'Tapered Jeans', colors: ['Black', 'Dark Grey', 'Navy Blue'], tag: 'NEW',
+                    desc: 'Tapered jeans that hug the ankle for a contemporary fit.' },
+                { name: 'Distressed Jeans', colors: ['Navy Blue', 'Black', 'Dark Grey'], tag: 'HOT',
+                    desc: 'Stylish distressed jeans with authentic wear patterns.' },
+                { name: 'Stretch Denim Jeans', colors: ['Black', 'Navy Blue', 'Dark Grey'], tag: '',
+                    desc: 'Comfort stretch denim that moves with you.' },
+                { name: 'Classic Blue Jean', colors: ['Navy Blue', 'Black'], tag: 'BESTSELLER',
+                    desc: 'The quintessential blue jean, a wardrobe essential.' },
+                { name: 'Black Denim Jean', colors: ['Black', 'Dark Grey'], tag: 'NEW',
+                    desc: 'Sleek black denim for a refined casual look.' },
+                { name: 'Relaxed Fit Jean', colors: ['Navy Blue', 'Black', 'Dark Grey'], tag: '',
+                    desc: 'Roomier relaxed-fit jeans for ultimate comfort.' },
+            ];
+            jeansVariants.forEach(v => addProduct(v.name, 'Jeans', 95000, TROUSER_SIZES, v.colors, v.tag, v.desc));
+
+            // --- Sweaterpants (6 products) ---
+            for (let i = 1; i <= 6; i++) {
+                const cols = [TROUSER_COLORS[i % TROUSER_COLORS.length], TROUSER_COLORS[(i + 2) % TROUSER_COLORS
+                    .length], TROUSER_COLORS[(i + 4) % TROUSER_COLORS.length]
+                ];
+                addProduct(`Cozy Sweaterpant ${i}`, 'Sweaterpants', 78000, TROUSER_SIZES, cols, i === 1 ? 'NEW' : '',
+                    'Warm and comfortable sweater-knit pants for lounging and casual outings.');
+            }
+
+            // --- Shorts (8 products) ---
+            for (let i = 1; i <= 8; i++) {
+                const cols = [TROUSER_COLORS[i % TROUSER_COLORS.length], TROUSER_COLORS[(i + 3) % TROUSER_COLORS
+                    .length]];
+                addProduct(`Casual Short ${i}`, 'Shorts', 55000, ['30', '32', '34', '36', '38', '40'], cols, i <= 2 ?
+                    'NEW' : '',
+                    'Lightweight casual shorts perfect for warm weather.');
+            }
+
+            // --- Cargopants (7 products) ---
+            for (let i = 1; i <= 7; i++) {
+                const cols = [TROUSER_COLORS[(i) % TROUSER_COLORS.length], TROUSER_COLORS[(i + 3) % TROUSER_COLORS
+                    .length], 'Black'];
+                addProduct(`Utility Cargopant ${i}`, 'Cargopants', 92000, TROUSER_SIZES, cols, i === 1 ? 'HOT' : '',
+                    'Functional cargo pants with multiple pockets. Rugged and stylish.');
+            }
+
+            // --- Beltless Trousers (7 products) ---
+            for (let i = 1; i <= 7; i++) {
+                const cols = [TROUSER_COLORS[i % TROUSER_COLORS.length], 'Black', 'Navy Blue'];
+                addProduct(`Beltless Trouser ${i}`, 'Beltless Trousers', 88000, TROUSER_SIZES, cols, i <= 2 ? 'NEW' :
+                    '',
+                    'Smart beltless trousers with an adjustable inner waistband for a clean look.');
+            }
+
+            // --- Polo T-shirts (8 products) ---
+            for (let i = 1; i <= 8; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], TOP_COLORS[(i + 2) % TOP_COLORS.length],
+                TOP_COLORS[(i + 4) % TOP_COLORS.length]];
+                addProduct(`Classic Polo ${i}`, 'Polo T-shirts', 45000, TOP_SIZES, cols, i === 1 ? 'BESTSELLER' : '',
+                    'A classic polo shirt crafted from breathable cotton pique.');
+            }
+
+            // --- Long-sleeved T-shirts (6 products) ---
+            for (let i = 1; i <= 6; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], TOP_COLORS[(i + 3) % TOP_COLORS.length]];
+                addProduct(`Long-sleeve Tee ${i}`, 'Long-sleeved T-shirts', 40000, TOP_SIZES, cols, i === 1 ? 'NEW' : '',
+                    'Comfortable long-sleeved tee for layering or standalone wear.');
+            }
+
+            // --- Short-sleeved T-shirts (8 products) ---
+            for (let i = 1; i <= 8; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], TOP_COLORS[(i + 2) % TOP_COLORS.length], 'White'];
+                addProduct(`Essential Tee ${i}`, 'Short-sleeved T-shirts', 32000, TOP_SIZES, cols, i <= 2 ? 'HOT' : '',
+                    'Everyday essential short-sleeved t-shirt in soft cotton.');
+            }
+
+            // --- Long-sleeved Shirts (7 products) ---
+            for (let i = 1; i <= 7; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], 'White', 'Black'];
+                addProduct(`Formal LS Shirt ${i}`, 'Long-sleeved Shirts', 65000, TOP_SIZES, cols, i === 1 ?
+                    'BESTSELLER' : '',
+                    'Crisp long-sleeved formal shirt for office and events.');
+            }
+
+            // --- Short-sleeved Shirts (7 products) ---
+            for (let i = 1; i <= 7; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], 'White', 'Cream'];
+                addProduct(`Casual SS Shirt ${i}`, 'Short-sleeved Shirts', 55000, TOP_SIZES, cols, i === 1 ? 'NEW' : '',
+                    'Relaxed short-sleeved shirt for smart-casual occasions.');
+            }
+
+            // --- Jackets (6 products) ---
+            for (let i = 1; i <= 6; i++) {
+                const cols = ['Black', 'Navy Blue', 'Dark Grey', 'Army Green', 'Brown', 'Maroon'].slice(0, 3);
+                addProduct(`Stylish Jacket ${i}`, 'Jackets', 120000, TOP_SIZES, cols, i === 1 ? 'HOT' : '',
+                    'Warm and stylish jacket to elevate any outfit.');
+            }
+
+            // --- Boxers (6 products) ---
+            for (let i = 1; i <= 6; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], 'Black', 'White'];
+                addProduct(`Cotton Boxer ${i}`, 'Boxers', 18000, TOP_SIZES, cols, '',
+                    'Soft cotton boxers for all-day comfort.');
+            }
+
+            // --- Underwear (6 products) ---
+            for (let i = 1; i <= 6; i++) {
+                const cols = ['Black', 'White', 'Dark Grey'];
+                addProduct(`Comfort Underwear ${i}`, 'Underwear', 15000, TOP_SIZES, cols, '',
+                    'Breathable and snug-fit underwear.');
+            }
+
+            // --- Rubber T-shirts (5 products) ---
+            for (let i = 1; i <= 5; i++) {
+                const cols = [TOP_COLORS[i % TOP_COLORS.length], 'Black', 'White'];
+                addProduct(`Rubber Print Tee ${i}`, 'Rubber T-shirts', 38000, TOP_SIZES, cols, i === 1 ? 'NEW' : '',
+                    'Trendy rubber-print t-shirt with unique graphic designs.');
+            }
+
+            // --- Open Shoes (8 products) ---
+            for (let i = 1; i <= 8; i++) {
+                const cols = SHOE_COLORS;
+                addProduct(`Open Sandal ${i}`, 'Open Shoes', 70000, SHOE_SIZES, cols, i <= 2 ? 'BESTSELLER' : '',
+                    'Comfortable open sandals crafted from genuine leather.');
+            }
+
+            return products;
+        }
+
+        // Initialize products
+        let allProducts = generateAllProducts();
+        // Load from localStorage if available
+        const savedProducts = localStorage.getItem('sebfour_products');
+        if (savedProducts) {
+            try {
+                const parsed = JSON.parse(savedProducts);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    allProducts = parsed;
+                }
+            } catch (e) { /* use defaults */ }
+        }
+
+        function saveProducts() {
+            localStorage.setItem('sebfour_products', JSON.stringify(allProducts));
+        }
+
+        // ==================== STATE ====================
+        let cart = [];
+        const savedCart = localStorage.getItem('sebfour_cart');
+        if (savedCart) {
+            try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
+        }
+
+        function saveCart() {
+            localStorage.setItem('sebfour_cart', JSON.stringify(cart));
+        }
+
+        let activeCategory = 'all';
+        let activeColorFilter = null;
+        let activeSizeFilter = null;
+
+        // ==================== RENDER FUNCTIONS ====================
+        function getFilteredProducts() {
+            const searchTerm = (document.getElementById('searchInput').value || '').toLowerCase();
+            return allProducts.filter(p => {
+                if (activeCategory !== 'all' && p.category !== activeCategory) return false;
+                if (activeColorFilter && !p.colors.includes(activeColorFilter)) return false;
+                if (activeSizeFilter && !p.sizes.includes(activeSizeFilter)) return false;
+                if (searchTerm && !p.name.toLowerCase().includes(searchTerm) && !p.category.toLowerCase()
+                    .includes(searchTerm) && !p.description.toLowerCase().includes(searchTerm)) return false;
+                return true;
+            });
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const filtered = getFilteredProducts();
+            document.getElementById('productsHeading').textContent = activeCategory === 'all' ? 'All Products' :
+                activeCategory;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">No products found. Try adjusting your filters.</div>';
+            } else {
+                grid.innerHTML = filtered.map(p => createProductCard(p)).join('');
+            }
+
+            // Attach event listeners
+            document.querySelectorAll('.product-card').forEach(card => {
+                const pid = parseInt(card.dataset.pid);
+                const product = allProducts.find(p => p.id === pid);
+                if (!product) return;
+
+                // Color swatches
+                card.querySelectorAll('.color-swatch').forEach(swatch => {
+                    swatch.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const color = swatch.dataset.color;
+                        product.currentColor = color;
+                        product.currentSlide = 0;
+                        updateCarouselForCard(card, product, color);
+                        // Update selected swatch
+                        card.querySelectorAll('.color-swatch').forEach(s => s.classList
+                            .remove('selected'));
+                        swatch.classList.add('selected');
+                    });
+                });
+
+                // Carousel arrows
+                card.querySelector('.carousel-arrow.prev')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    product.currentSlide = Math.max(0, product.currentSlide - 1);
+                    updateCarouselForCard(card, product, product.currentColor);
+                });
+                card.querySelector('.carousel-arrow.next')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const maxSlide = (product.colorImages[product.currentColor]?.length || 5) - 1;
+                    product.currentSlide = Math.min(maxSlide, product.currentSlide + 1);
+                    updateCarouselForCard(card, product, product.currentColor);
+                });
+
+                // Dots
+                card.querySelectorAll('.carousel-dot').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        product.currentSlide = parseInt(dot.dataset.slide);
+                        updateCarouselForCard(card, product, product.currentColor);
+                    });
+                });
+
+                // Add to cart
+                card.querySelector('.add-to-cart-btn')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sizeSelect = card.querySelector('.size-select');
+                    const qtyInput = card.querySelector('.qty-input');
+                    const size = sizeSelect?.value || product.sizes[0];
+                    const qty = parseInt(qtyInput?.value || 1);
+                    addToCart(product, size, product.currentColor, qty);
+                });
+
+                // WhatsApp direct
+                card.querySelector('.whatsapp-btn-sm')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sizeSelect = card.querySelector('.size-select');
+                    const size = sizeSelect?.value || product.sizes[0];
+                    const qty = parseInt(card.querySelector('.qty-input')?.value || 1);
+                    buyNowWhatsApp(product, size, product.currentColor, qty);
+                });
+            });
+
+            updateCartCount();
+            updateSidebarFilters();
+        }
+
+        function updateCarouselForCard(card, product, color) {
+            const slidesContainer = card.querySelector('.carousel-slides');
+            const dotsContainer = card.querySelector('.carousel-dots');
+            const images = product.colorImages[color] || getPlaceholderImages(product.id * 100, 5);
+            const slide = product.currentSlide || 0;
+
+            slidesContainer.innerHTML = images.map((img, i) => `
+            <div class="carousel-slide" style="min-width:100%;">
+              <img src="${img}" alt="${product.name} - ${color} view ${i+1}" loading="lazy" onerror="this.src='https://picsum.photos/400/500?random=fallback${product.id}${i}'">
+            </div>
+          `).join('');
+            slidesContainer.style.transform = `translateX(-${slide * 100}%)`;
+
+            dotsContainer.innerHTML = images.map((_, i) => `
+            <span class="carousel-dot${i === slide ? ' active' : ''}" data-slide="${i}"></span>
+          `).join('');
+
+            // Re-attach dot events
+            dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    product.currentSlide = parseInt(dot.dataset.slide);
+                    updateCarouselForCard(card, product, color);
+                });
+            });
+        }
+
+        function createProductCard(product) {
+            const color = product.currentColor || product.colors[0];
+            const images = product.colorImages[color] || getPlaceholderImages(product.id * 100, 5);
+            const slide = product.currentSlide || 0;
+            const hasDiscount = false; // discount shown in cart for 2+
+
+            let tagHTML = '';
+            if (product.tag) {
+                const tagClass = product.tag.toLowerCase().replace(/\s/g, '-');
+                const tagMap = { 'new': 'tag-new', 'hot': 'tag-hot', 'bestseller': 'tag-bestseller', 'sale': 'tag-sale' };
+                const cls = tagMap[product.tag.toLowerCase()] || 'tag-new';
+                tagHTML = `<span class="product-tag ${cls}">${product.tag}</span>`;
+            }
+
+            return `
+            <div class="product-card" data-pid="${product.id}">
+              ${tagHTML}
+              <div class="carousel-container">
+                <div class="carousel-slides" style="transform:translateX(-${slide*100}%);">
+                  ${images.map((img,i)=>`
+                  <div class="carousel-slide" style="min-width:100%;">
+                    <img src="${img}" alt="${product.name} view ${i+1}" loading="lazy" onerror="this.src='https://picsum.photos/400/500?random=fallback${product.id}${i}'">
+                  </div>`).join('')}
+                </div>
+                <div class="carousel-dots">
+                  ${images.map((_,i)=>`<span class="carousel-dot${i===slide?' active':''}" data-slide="${i}"></span>`).join('')}
+                </div>
+                <button class="carousel-arrow prev">◀</button>
+                <button class="carousel-arrow next">▶</button>
+              </div>
+              <div class="product-info">
+                <div class="product-name">${product.name}</div>
+                <div class="product-desc">${product.description}</div>
+                <div class="color-swatches">
+                  ${product.colors.map(c=>`
+                  <span class="color-swatch${c===color?' selected':''}" data-color="${c}" style="background:${getColorHex(c)};" title="${c}"></span>
+                  `).join('')}
+                </div>
+                <div class="size-selector">
+                  <select class="size-select">
+                    ${product.sizes.map(s=>`<option value="${s}">Size: ${s}</option>`).join('')}
+                  </select>
+                </div>
+                <div class="qty-row">
+                  <span style="font-size:0.8rem;">Qty:</span>
+                  <input type="number" class="qty-input" value="1" min="1" max="20">
+                </div>
+                <div class="price-section">
+                  <span class="price-current">UGX ${product.price.toLocaleString()}</span>
+                  <br><span class="price-discount-note">Buy 2+ same items = 10% OFF</span>
+                </div>
+                <button class="add-to-cart-btn">🛒 Add to Cart</button>
+                <button class="whatsapp-btn-sm">💬 Order via WhatsApp</button>
+              </div>
+            </div>`;
+        }
+
+        function updateSidebarFilters() {
+            const filtered = getFilteredProducts();
+            const allProductsForSidebar = activeCategory === 'all' ? allProducts : allProducts.filter(p => p.category ===
+                activeCategory);
+
+            // Categories
+            const categories = [...new Set(allProducts.map(p => p.category))];
+            document.getElementById('sidebarCategories').innerHTML = categories.map(c => `
+            <label class="filter-option">
+              <input type="radio" name="sidebarCat" ${activeCategory===c?'checked':''} onchange="setCategory('${c.replace(/'/g,"\\'")}')">
+              ${c} (${allProducts.filter(p=>p.category===c).length})
+            </label>
+          `).join('') + `
+            <label class="filter-option">
+              <input type="radio" name="sidebarCat" ${activeCategory==='all'?'checked':''} onchange="setCategory('all')">
+              All (${allProducts.length})
+            </label>`;
+
+            // Colors
+            const allColors = [...new Set(allProductsForSidebar.flatMap(p => p.colors))];
+            document.getElementById('sidebarColors').innerHTML = allColors.map(c => `
+            <span class="color-swatch-filter${activeColorFilter===c?' selected':''}" 
+              style="background:${getColorHex(c)};" 
+              title="${c}" 
+              onclick="setColorFilter('${c.replace(/'/g,"\\'")}')"></span>
+          `).join('') + ' ';
+
+            // Sizes
+            const allSizes = [...new Set(allProductsForSidebar.flatMap(p => p.sizes))].sort((a, b) => {
+                const numA = parseInt(a);
+                const numB = parseInt(b);
+                if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+                return a.localeCompare(b);
+            });
+            document.getElementById('sidebarSizes').innerHTML = allSizes.map(s => `
+            <label class="filter-option">
+              <input type="radio" name="sidebarSize" ${activeSizeFilter===s?'checked':''} onchange="setSizeFilter('${s}')">
+              Size ${s}
+            </label>
+          `).join('');
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                container.innerHTML =
+                    '<p style="text-align:center;color:#999;padding:40px;">Your cart is empty.<br>Start shopping! 🛍️</p>';
+                document.getElementById('cartTotal').textContent = 'Total: UGX 0';
+                document.getElementById('cartSavings').textContent = '';
+            } else {
+                let totalSavings = 0;
+                let subtotal = 0;
+                container.innerHTML = cart.map((item, idx) => {
+                    const originalUnitPrice = item.price;
+                    const hasDiscount = item.qty >= 2;
+                    const discountedUnitPrice = hasDiscount ? Math.round(originalUnitPrice * 0.9) :
+                        originalUnitPrice;
+                    const lineTotal = discountedUnitPrice * item.qty;
+                    const lineSavings = hasDiscount ? (originalUnitPrice - discountedUnitPrice) * item.qty : 0;
+                    totalSavings += lineSavings;
+                    subtotal += lineTotal;
+                    const img = item.image || `https://picsum.photos/seed/${item.productId}${item.color}/70/90`;
+                    return `
+                <div class="cart-item">
+                  <img class="cart-item-img" src="${img}" alt="${item.name}" onerror="this.src='https://picsum.photos/70/90?random=cart${idx}'">
+                  <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-meta">Size: ${item.size} | Color: ${item.color} | Qty: ${item.qty}</div>
+                    <div class="cart-item-price">UGX ${lineTotal.toLocaleString()}</div>
+                    ${hasDiscount?`<div class="cart-item-discount">10% bulk discount applied! Saved UGX ${lineSavings.toLocaleString()}</div>`:''}
+                    <button class="cart-item-remove" onclick="removeCartItem(${idx})">Remove</button>
+                  </div>
+                </div>`;
+                }).join('');
+                document.getElementById('cartTotal').textContent = `Total: UGX ${subtotal.toLocaleString()}`;
+                document.getElementById('cartSavings').textContent = totalSavings > 0 ?
+                    `🎉 You saved UGX ${totalSavings.toLocaleString()} with bulk discounts!` : '';
+            }
+            updateCartCount();
+        }
+
+        // ==================== CART FUNCTIONS ====================
+        function addToCart(product, size, color, qty) {
+            const existingIdx = cart.findIndex(item =>
+                item.productId === product.id && item.size === size && item.color === color
+            );
+            if (existingIdx >= 0) {
+                cart[existingIdx].qty += qty;
+            } else {
+                cart.push({
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    size,
+                    color,
+                    qty,
+                    image: product.colorImages[color]?.[0] || `https://picsum.photos/seed/${product.id}/70/90`,
+                    category: product.category,
+                });
+            }
+            saveCart();
+            renderCart();
+            showToast(`✅ Added ${qty}x ${product.name} (${size}, ${color}) to cart!`);
+        }
+
+        function buyNowWhatsApp(product, size, color, qty) {
+            const hasDiscount = qty >= 2;
+            const unitPrice = hasDiscount ? Math.round(product.price * 0.9) : product.price;
+            const total = unitPrice * qty;
+            const savings = hasDiscount ? (product.price - unitPrice) * qty : 0;
+            const msg =
+                `🛍️ *Sebfour Co. - Quick Order*\n\n📦 *Item:* ${product.name}\n📏 *Size:* ${size}\n🎨 *Color:* ${color}\n🔢 *Qty:* ${qty}\n💰 *Unit Price:* UGX ${unitPrice.toLocaleString()}\n${hasDiscount?`🏷️ *Bulk Discount (10%):* Saved UGX ${savings.toLocaleString()}\n`:''}💵 *Total:* UGX ${total.toLocaleString()}\n\n_Please confirm my order. Thank you!_`;
+            window.open(`https://wa.me/256757306640?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function removeCartItem(idx) {
+            cart.splice(idx, 1);
+            saveCart();
+            renderCart();
+            showToast('Item removed from cart');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            let msg = `🛍️ *Sebfour Co. - New Order*\n\n`;
+            let totalAll = 0;
+            let totalSavingsAll = 0;
+            cart.forEach((item, i) => {
+                const hasDiscount = item.qty >= 2;
+                const unitPrice = hasDiscount ? Math.round(item.price * 0.9) : item.price;
+                const lineTotal = unitPrice * item.qty;
+                const lineSavings = hasDiscount ? (item.price - unitPrice) * item.qty : 0;
+                totalAll += lineTotal;
+                totalSavingsAll += lineSavings;
+                msg +=
+                    `*${i+1}.* ${item.name}\n   Size: ${item.size} | Color: ${item.color} | Qty: ${item.qty}\n   Price: UGX ${unitPrice.toLocaleString()} each = UGX ${lineTotal.toLocaleString()}${hasDiscount?' (10% OFF)':''}\n\n`;
+            });
+            msg +=
+                `💵 *Total: UGX ${totalAll.toLocaleString()}*\n${totalSavingsAll>0?`🎉 *Savings: UGX ${totalSavingsAll.toLocaleString()}*\n`:''}\n📞 _Please confirm and share delivery details. Thank you!_`;
+            window.open(`https://wa.me/256757306640?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // ==================== UI FUNCTIONS ====================
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar');
+            const isOpen = sidebar.classList.contains('open');
+            if (isOpen) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            } else {
+                renderCart();
+                sidebar.classList.add('open');
+                overlay.classList.add('open');
+            }
+        }
+
+        function setCategory(cat, btnEl) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            else {
+                const matchBtn = document.querySelector(`.cat-btn[data-cat="${cat}"]`);
+                if (matchBtn) matchBtn.classList.add('active');
+                else document.querySelector('.cat-btn[data-cat="all"]')?.classList.add('active');
+            }
+            renderProducts();
+        }
+
+        function setColorFilter(color) {
+            if (activeColorFilter === color) {
+                activeColorFilter = null;
+            } else {
+                activeColorFilter = color;
+            }
+            renderProducts();
+        }
+
+        function setSizeFilter(size) {
+            if (activeSizeFilter === size) {
+                activeSizeFilter = null;
+            } else {
+                activeSizeFilter = size;
+            }
+            renderProducts();
+        }
+
+        function clearFilters() {
+            activeCategory = 'all';
+            activeColorFilter = null;
+            activeSizeFilter = null;
+            document.getElementById('searchInput').value = '';
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.cat-btn[data-cat="all"]')?.classList.add('active');
+            renderProducts();
+        }
+
+        function resetFilters() {
+            clearFilters();
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = msg;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 2500);
+        }
+
+        // ==================== ADMIN PANEL ====================
+        function openAdmin() {
+            document.getElementById('adminModal').classList.add('open');
+            renderAdminTable();
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').classList.remove('open');
+            document.getElementById('adminProductForm').style.display = 'none';
+            document.getElementById('adminImageManager').style.display = 'none';
+            renderProducts();
+            renderCart();
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = allProducts.map(p => `
+            <tr>
+              <td>${p.id}</td>
+              <td>${p.name}</td>
+              <td>${p.category}</td>
+              <td>UGX ${p.price.toLocaleString()}</td>
+              <td>${p.colors.join(', ')}</td>
+              <td>${p.tag||'-'}</td>
+              <td>
+                <button class="admin-btn edit" onclick="editProduct(${p.id})">✏️ Edit</button>
+                <button class="admin-btn delete" onclick="deleteProduct(${p.id})">🗑️ Delete</button>
+                <button class="admin-btn" style="background:#ff9800;color:#fff;" onclick="manageImages(${p.id})">🖼️ Images</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Delete this product? This cannot be undone.')) {
+                allProducts = allProducts.filter(p => p.id !== id);
+                saveProducts();
+                renderAdminTable();
+                renderProducts();
+                showToast('Product deleted');
+            }
+        }
+
+        function editProduct(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+            const formDiv = document.getElementById('adminProductForm');
+            formDiv.style.display = 'block';
+            formDiv.innerHTML = `
+            <h4>Edit Product #${product.id}</h4>
+            <div class="admin-form">
+              <label>Name</label><input type="text" id="editName" value="${product.name.replace(/"/g,'&quot;')}">
+              <label>Category</label><select id="editCategory">
+                ${[...new Set(allProducts.map(p=>p.category))].map(c=>`<option value="${c}" ${product.category===c?'selected':''}>${c}</option>`).join('')}
+                <option value="__new__">+ New Category</option>
+              </select>
+              <input type="text" id="editNewCategory" placeholder="New category name" style="display:none;margin-top:4px;">
+              <label>Price (UGX)</label><input type="number" id="editPrice" value="${product.price}">
+              <label>Sizes (comma-separated)</label><input type="text" id="editSizes" value="${product.sizes.join(',')}">
+              <label>Colors (comma-separated)</label><input type="text" id="editColors" value="${product.colors.join(',')}">
+              <label>Tag</label><select id="editTag">
+                <option value="">None</option>
+                <option value="NEW" ${product.tag==='NEW'?'selected':''}>NEW</option>
+                <option value="HOT" ${product.tag==='HOT'?'selected':''}>HOT</option>
+                <option value="BESTSELLER" ${product.tag==='BESTSELLER'?'selected':''}>BESTSELLER</option>
+                <option value="SALE" ${product.tag==='SALE'?'selected':''}>SALE</option>
+              </select>
+              <label>Description</label><textarea id="editDesc" rows="2">${product.description}</textarea>
+              <br>
+              <button class="admin-btn save" onclick="saveProductEdit(${product.id})">💾 Save Changes</button>
+              <button class="admin-btn" style="background:#888;color:#fff;" onclick="document.getElementById('adminProductForm').style.display='none'">Cancel</button>
+            </div>
+          `;
+            document.getElementById('editCategory').addEventListener('change', function() {
+                document.getElementById('editNewCategory').style.display = this.value === '__new__' ? 'block' :
+                    'none';
+            });
+            formDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveProductEdit(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+            const name = document.getElementById('editName').value.trim();
+            let category = document.getElementById('editCategory').value;
+            if (category === '__new__') {
+                category = document.getElementById('editNewCategory').value.trim();
+                if (!category) { alert('Enter new category name'); return; }
+            }
+            const price = parseInt(document.getElementById('editPrice').value) || product.price;
+            const sizes = document.getElementById('editSizes').value.split(',').map(s => s.trim()).filter(Boolean);
+            const colors = document.getElementById('editColors').value.split(',').map(c => c.trim()).filter(Boolean);
+            const tag = document.getElementById('editTag').value;
+            const desc = document.getElementById('editDesc').value.trim();
+
+            product.name = name;
+            product.category = category;
+            product.price = price;
+            product.sizes = sizes.length > 0 ? sizes : product.sizes;
+            product.colors = colors.length > 0 ? colors : product.colors;
+            product.tag = tag;
+            product.description = desc;
+
+            // Update colorImages for new colors
+            colors.forEach(c => {
+                if (!product.colorImages[c]) {
+                    product.colorImages[c] = getPlaceholderImages(product.id * 100 + colors.indexOf(c), 5);
+                }
+            });
+            // Remove old colors not in new list
+            Object.keys(product.colorImages).forEach(c => {
+                if (!colors.includes(c)) delete product.colorImages[c];
+            });
+            if (!product.colorImages[product.currentColor]) {
+                product.currentColor = colors[0];
+            }
+
+            saveProducts();
+            document.getElementById('adminProductForm').style.display = 'none';
+            renderAdminTable();
+            renderProducts();
+            showToast('Product updated!');
+        }
+
+        function showAddProductForm() {
+            const formDiv = document.getElementById('adminProductForm');
+            formDiv.style.display = 'block';
+            const newId = Math.max(...allProducts.map(p => p.id), 0) + 1;
+            formDiv.innerHTML = `
+            <h4>Add New Product</h4>
+            <div class="admin-form">
+              <label>Name</label><input type="text" id="editName" value="New Product">
+              <label>Category</label><select id="editCategory">
+                ${[...new Set(allProducts.map(p=>p.category))].map(c=>`<option value="${c}">${c}</option>`).join('')}
+                <option value="__new__">+ New Category</option>
+              </select>
+              <input type="text" id="editNewCategory" placeholder="New category name" style="display:none;margin-top:4px;">
+              <label>Price (UGX)</label><input type="number" id="editPrice" value="50000">
+              <label>Sizes (comma-separated)</label><input type="text" id="editSizes" value="S,M,L,XL">
+              <label>Colors (comma-separated)</label><input type="text" id="editColors" value="Black,White">
+              <label>Tag</label><select id="editTag">
+                <option value="">None</option><option value="NEW">NEW</option><option value="HOT">HOT</option><option value="BESTSELLER">BESTSELLER</option><option value="SALE">SALE</option>
+              </select>
+              <label>Description</label><textarea id="editDesc" rows="2">New product description.</textarea>
+              <br>
+              <button class="admin-btn save" onclick="saveNewProduct(${newId})">➕ Add Product</button>
+              <button class="admin-btn" style="background:#888;color:#fff;" onclick="document.getElementById('adminProductForm').style.display='none'">Cancel</button>
+            </div>
+          `;
+            document.getElementById('editCategory').addEventListener('change', function() {
+                document.getElementById('editNewCategory').style.display = this.value === '__new__' ? 'block' :
+                    'none';
+            });
+            formDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveNewProduct(newId) {
+            const name = document.getElementById('editName').value.trim();
+            let category = document.getElementById('editCategory').value;
+            if (category === '__new__') {
+                category = document.getElementById('editNewCategory').value.trim();
+                if (!category) { alert('Enter new category name'); return; }
+            }
+            const price = parseInt(document.getElementById('editPrice').value) || 50000;
+            const sizes = document.getElementById('editSizes').value.split(',').map(s => s.trim()).filter(Boolean);
+            const colors = document.getElementById('editColors').value.split(',').map(c => c.trim()).filter(Boolean);
+            const tag = document.getElementById('editTag').value;
+            const desc = document.getElementById('editDesc').value.trim();
+            if (!name || !category || colors.length === 0 || sizes.length === 0) {
+                alert('Please fill all required fields (name, category, colors, sizes).');
+                return;
+            }
+            const colorImages = {};
+            colors.forEach((c, ci) => {
+                colorImages[c] = getPlaceholderImages(newId * 100 + ci, 5);
+            });
+            allProducts.push({
+                id: newId,
+                name,
+                category,
+                price,
+                sizes,
+                colors,
+                colorImages,
+                tag,
+                description: desc || `Quality ${name.toLowerCase()} from Sebfour Co.`,
+                currentColor: colors[0],
+                currentSlide: 0,
+            });
+            saveProducts();
+            document.getElementById('adminProductForm').style.display = 'none';
+            renderAdminTable();
+            renderProducts();
+            showToast('New product added!');
+        }
+
+        function manageImages(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+            const mgr = document.getElementById('adminImageManager');
+            mgr.style.display = 'block';
+            let html = `<h4>🖼️ Manage Images for "${product.name}" (ID: ${product.id})</h4>`;
+            Object.keys(product.colorImages).forEach(color => {
+                const imgs = product.colorImages[color];
+                html += `
+              <div style="margin:8px 0;padding:8px;background:#fff;border-radius:6px;">
+                <strong>🎨 ${color}</strong> (${imgs.length} images)
+                <div class="admin-image-thumbs">
+                  ${imgs.map((img,i)=>`
+                    <div style="position:relative;display:inline-block;">
+                      <img class="admin-image-thumb" src="${img}" onerror="this.src='https://picsum.photos/50/65?random=thumb${id}${i}'" title="Image ${i+1}">
+                      <button class="admin-btn delete" style="position:absolute;top:-6px;right:-6px;font-size:0.6rem;padding:2px 6px;" onclick="deleteProductImage(${id},'${color.replace(/'/g,"\\'")}',${i})">✕</button>
+                    </div>
+                  `).join('')}
+                </div>
+                <input type="text" placeholder="Add image URL for ${color}" id="newImgUrl_${id}_${color.replace(/[^a-zA-Z0-9]/g,'_')}" style="width:70%;display:inline-block;margin-top:4px;">
+                <button class="admin-btn save" onclick="addProductImage(${id},'${color.replace(/'/g,"\\'")}')" style="display:inline-block;">+ Add</button>
+              </div>`;
+            });
+            html +=
+                `<button class="admin-btn" style="background:#888;color:#fff;margin-top:8px;" onclick="document.getElementById('adminImageManager').style.display='none'">Close</button>`;
+            mgr.innerHTML = html;
+            mgr.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteProductImage(productId, color, index) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product || !product.colorImages[color]) return;
+            if (product.colorImages[color].length <= 1) {
+                alert('Each color must have at least 1 image.');
+                return;
+            }
+            product.colorImages[color].splice(index, 1);
+            saveProducts();
+            manageImages(productId);
+            renderProducts();
+            showToast('Image deleted');
+        }
+
+        function addProductImage(productId, color) {
+            const inputId = `newImgUrl_${productId}_${color.replace(/[^a-zA-Z0-9]/g, '_')}`;
+            const input = document.getElementById(inputId);
+            const url = input?.value?.trim();
+            if (!url) { alert('Enter an image URL'); return; }
+            const product = allProducts.find(p => p.id === productId);
+            if (!product || !product.colorImages[color]) return;
+            product.colorImages[color].push(url);
+            saveProducts();
+            manageImages(productId);
+            renderProducts();
+            showToast('Image added!');
+            input.value = '';
+        }
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            renderProducts();
+            updateSidebarFilters();
+            updateCartCount();
+            renderCart();
+        }
+
+        // Close cart on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('cartSidebar');
+                if (sidebar.classList.contains('open')) toggleCart();
+                if (document.getElementById('adminModal').classList.contains('open')) closeAdmin();
+            }
+        });
+
+        // Initialize
+        init();
+
+        console.log('🛍️ Sebfour Co. - Landing Page Ready');
+        console.log(`📦 ${allProducts.length} products loaded`);
+        console.log('💬 WhatsApp: +256 757 306640');
+        console.log('🔧 Admin panel: Click the ⚙️ button (bottom right)');
+        console.log('🛒 Cart: Click cart button to view & checkout');
+        console.log('🏷️ Discount: 10% off when buying 2+ of the same item');
+    </script>
+</body>
+</html>
